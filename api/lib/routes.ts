@@ -6,10 +6,14 @@ import {
   insertBlogPostSchema,
   insertPortfolioProjectSchema,
   insertPageViewSchema,
-  defaultPortfolioProjects
-} from "@shared/schema";
+  defaultPortfolioProjects,
+  users,
+  contactInquiries,
+  blogPosts,
+  portfolioProjectsTable,
+  pageViews
+} from "../../shared/schema.js";
 import { db } from "./db.js";
-import { users, contactInquiries, blogPosts, portfolioProjectsTable, pageViews } from "../../shared/schema";
 import { z } from "zod";
 import session from "express-session";
 import passport from "passport";
