@@ -1,5 +1,5 @@
-import { app, httpServer, setup, log } from "../api/lib/app";
-import { serveStatic } from "./static";
+import { app, httpServer, setup, log } from "../api/lib/app.js";
+import { serveStatic } from "./static.js";
 import { fileURLToPath } from "url";
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
@@ -11,7 +11,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         console.warn("Failed to serve static files:", e);
       }
     } else {
-      const { setupVite } = await import("./vite");
+      const { setupVite } = await import("./vite.js");
       await setupVite(httpServer, app);
     }
 
