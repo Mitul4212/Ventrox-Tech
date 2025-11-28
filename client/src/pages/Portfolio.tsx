@@ -12,14 +12,31 @@ const industries = ["All", "Cybersecurity", "Aviation", "FinTech"];
 export default function Portfolio() {
   const [selectedIndustry, setSelectedIndustry] = useState("All");
 
-  const { data: projectsData, isLoading } = useQuery<{ success: boolean; data: PortfolioProject[] }>({
+  const { data: projectsData, isLoading } = useQuery<any>({
     queryKey: ["/api/portfolio"],
   });
+
+  if (projectsData?.status === "error") {
+    return (
+      <div className="min-h-screen pt-32 px-6">
+        <div className="max-w-3xl mx-auto p-6 border-2 border-red-500 rounded-lg bg-red-50/10">
+          <h1 className="text-2xl font-bold text-red-500 mb-4">API Error Detected</h1>
+          <p className="text-lg font-semibold">{projectsData.message}</p>
+          <p className="text-muted-foreground mt-2">Error Details:</p>
+          <pre className="mt-2 p-4 bg-black/80 text-white rounded text-sm overflow-auto whitespace-pre-wrap">
+            {projectsData.error_message}
+            {'\n\nStack:\n'}
+            {projectsData.stack}
+          </pre>
+        </div>
+      </div>
+    );
+  }
 
   const projects = projectsData?.data || [];
   const filteredProjects = selectedIndustry === "All"
     ? projects
-    : projects.filter((p) => p.industry.includes(selectedIndustry));
+    : projects.filter((p: PortfolioProject) => p.industry.includes(selectedIndustry));
 
   return (
     <div className="min-h-screen pt-20" data-testid="page-portfolio">
