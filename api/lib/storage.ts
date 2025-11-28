@@ -1,12 +1,12 @@
-import { 
-  users, 
-  contactInquiries, 
-  blogPosts, 
-  portfolioProjectsTable, 
+import {
+  users,
+  contactInquiries,
+  blogPosts,
+  portfolioProjectsTable,
   pageViews,
-  type User, 
-  type InsertUser, 
-  type ContactInquiry, 
+  type User,
+  type InsertUser,
+  type ContactInquiry,
   type InsertContactInquiry,
   type BlogPost,
   type InsertBlogPost,
@@ -14,7 +14,7 @@ import {
   type InsertPortfolioProject,
   type PageView,
   type InsertPageView
-} from "@shared/schema";
+} from "../../shared/schema";
 import { db } from "./db";
 import { eq, desc, and, sql } from "drizzle-orm";
 
@@ -22,25 +22,25 @@ export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  
+
   createContactInquiry(inquiry: InsertContactInquiry): Promise<ContactInquiry>;
   getContactInquiries(): Promise<ContactInquiry[]>;
   getContactInquiry(id: string): Promise<ContactInquiry | undefined>;
   updateContactInquiryStatus(id: string, status: string): Promise<ContactInquiry | undefined>;
-  
+
   createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
   getBlogPosts(publishedOnly?: boolean): Promise<BlogPost[]>;
   getBlogPost(id: string): Promise<BlogPost | undefined>;
   getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
   updateBlogPost(id: string, data: Partial<InsertBlogPost>): Promise<BlogPost | undefined>;
   deleteBlogPost(id: string): Promise<boolean>;
-  
+
   createPortfolioProject(project: InsertPortfolioProject): Promise<PortfolioProject>;
   getPortfolioProjects(): Promise<PortfolioProject[]>;
   getPortfolioProject(id: string): Promise<PortfolioProject | undefined>;
   updatePortfolioProject(id: string, data: Partial<InsertPortfolioProject>): Promise<PortfolioProject | undefined>;
   deletePortfolioProject(id: string): Promise<boolean>;
-  
+
   trackPageView(view: InsertPageView): Promise<PageView>;
   getPageViewStats(): Promise<{ path: string; views: number }[]>;
   getTotalPageViews(): Promise<number>;

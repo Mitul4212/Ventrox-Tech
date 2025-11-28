@@ -1,4 +1,4 @@
-import { app, httpServer, setup, log } from "./app";
+import { app, httpServer, setup, log } from "../api/lib/app";
 import { serveStatic } from "./static";
 import { fileURLToPath } from "url";
 

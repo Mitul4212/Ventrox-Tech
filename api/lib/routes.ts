@@ -8,6 +8,8 @@ import {
   insertPageViewSchema,
   defaultPortfolioProjects
 } from "@shared/schema";
+import { db } from "./db";
+import { users, contactInquiries, blogPosts, portfolioProjects, pageViews } from "../../shared/schema";
 import { z } from "zod";
 import session from "express-session";
 import passport from "passport";

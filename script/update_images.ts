@@ -1,4 +1,4 @@
-import { db } from "../server/db";
+import { db } from "../api/lib/db";
 import { portfolioProjectsTable } from "../shared/schema";
 import { eq } from "drizzle-orm";
 
