@@ -1,3 +1,8 @@
 export default function handler(req: any, res: any) {
-    res.status(200).json({ status: "ok", message: "Vercel API is working" });
+    res.status(200).json({
+        status: "ok",
+        message: "Vercel API is working",
+        build_time: new Date().toISOString(),
+        version: "1.0.1"
+    });
 }
