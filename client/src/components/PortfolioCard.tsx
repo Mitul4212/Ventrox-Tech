@@ -19,7 +19,17 @@ const projectColors: Record<string, { gradient: string; accent: string }> = {
 };
 
 export function PortfolioCard({ project, variant = "default" }: PortfolioCardProps) {
-  const colors = projectColors[project.image || "fintech"] || projectColors.fintech;
+  const getIndustryColor = (industry: string) => {
+    const key = industry.toLowerCase();
+    if (key.includes("fintech")) return projectColors.fintech;
+    if (key.includes("health")) return projectColors.healthcare;
+    if (key.includes("commerce")) return projectColors.ecommerce;
+    if (key.includes("logistic")) return projectColors.logistics;
+    if (key.includes("edtech") || key.includes("education")) return projectColors.education;
+    return projectColors.fintech;
+  };
+
+  const colors = getIndustryColor(project.industry);
 
   if (variant === "featured") {
     return (
@@ -35,17 +45,25 @@ export function PortfolioCard({ project, variant = "default" }: PortfolioCardPro
           "absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 border-2",
           colors.accent
         )} />
-        
+
         <CardContent className="p-0 relative">
           <div className={cn(
-            "h-48 rounded-t-xl bg-gradient-to-br flex items-center justify-center",
+            "h-48 rounded-t-xl bg-gradient-to-br flex items-center justify-center overflow-hidden",
             colors.gradient
           )}>
-            <div className="w-32 h-24 rounded-lg bg-card/80 backdrop-blur border border-border flex items-center justify-center">
-              <span className="font-mono text-xs text-muted-foreground">Preview</span>
-            </div>
+            {project.image && project.image.startsWith("/") ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <div className="w-32 h-24 rounded-lg bg-card/80 backdrop-blur border border-border flex items-center justify-center">
+                <span className="font-mono text-xs text-muted-foreground">Preview</span>
+              </div>
+            )}
           </div>
-          
+
           <div className="p-6">
             <div className="flex items-center justify-between mb-3">
               <Badge variant="secondary" className="text-xs">
@@ -55,15 +73,15 @@ export function PortfolioCard({ project, variant = "default" }: PortfolioCardPro
                 <ExternalLink className="w-4 h-4" />
               </Button>
             </div>
-            
+
             <h3 className="font-bold text-lg mb-2 text-foreground group-hover:text-primary transition-colors">
               {project.title}
             </h3>
-            
+
             <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
               {project.problem}
             </p>
-            
+
             <div className="flex flex-wrap gap-1.5">
               {project.techStack.slice(0, 3).map((tech, index) => (
                 <span
@@ -93,45 +111,53 @@ export function PortfolioCard({ project, variant = "default" }: PortfolioCardPro
       <CardContent className="p-0">
         <div className="grid md:grid-cols-2 gap-0">
           <div className={cn(
-            "h-64 md:h-auto md:min-h-[300px] rounded-t-xl md:rounded-l-xl md:rounded-tr-none bg-gradient-to-br flex items-center justify-center",
+            "h-64 md:h-auto md:min-h-[300px] rounded-t-xl md:rounded-l-xl md:rounded-tr-none bg-gradient-to-br flex items-center justify-center overflow-hidden",
             colors.gradient
           )}>
-            <div className="w-48 h-32 rounded-lg bg-card/80 backdrop-blur border border-border flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-2">
-                  <div className="w-3 h-3 rounded-full bg-primary" />
+            {project.image && project.image.startsWith("/") ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <div className="w-48 h-32 rounded-lg bg-card/80 backdrop-blur border border-border flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-2">
+                    <div className="w-3 h-3 rounded-full bg-primary" />
+                  </div>
+                  <span className="font-mono text-xs text-muted-foreground">Project Preview</span>
                 </div>
-                <span className="font-mono text-xs text-muted-foreground">Project Preview</span>
               </div>
-            </div>
+            )}
           </div>
-          
+
           <div className="p-8">
             <Badge variant="secondary" className="mb-4">
               {project.industry}
             </Badge>
-            
+
             <h3 className="font-bold text-2xl mb-4 text-foreground">
               {project.title}
             </h3>
-            
+
             <div className="space-y-4 mb-6">
               <div>
                 <h4 className="text-sm font-semibold text-foreground mb-1">Challenge</h4>
                 <p className="text-sm text-muted-foreground">{project.problem}</p>
               </div>
-              
+
               <div>
                 <h4 className="text-sm font-semibold text-foreground mb-1">Solution</h4>
                 <p className="text-sm text-muted-foreground">{project.solution}</p>
               </div>
-              
+
               <div>
                 <h4 className="text-sm font-semibold text-foreground mb-1">Results</h4>
                 <p className="text-sm text-primary font-medium">{project.outcome}</p>
               </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-2 mb-6">
               {project.techStack.map((tech, index) => (
                 <span
@@ -142,7 +168,7 @@ export function PortfolioCard({ project, variant = "default" }: PortfolioCardPro
                 </span>
               ))}
             </div>
-            
+
             <Button variant="ghost" className="group/btn p-0 h-auto text-primary">
               View Case Study
               <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />

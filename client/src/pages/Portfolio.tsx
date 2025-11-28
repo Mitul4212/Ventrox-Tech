@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { PortfolioProject } from "@shared/schema";
 import { Loader2 } from "lucide-react";
 
-const industries = ["All", "FinTech", "Healthcare", "E-commerce", "Logistics", "EdTech"];
+const industries = ["All", "Cybersecurity", "Aviation", "FinTech"];
 
 export default function Portfolio() {
   const [selectedIndustry, setSelectedIndustry] = useState("All");
@@ -19,14 +19,14 @@ export default function Portfolio() {
   const projects = projectsData?.data || [];
   const filteredProjects = selectedIndustry === "All"
     ? projects
-    : projects.filter((p) => p.industry === selectedIndustry);
+    : projects.filter((p) => p.industry.includes(selectedIndustry));
 
   return (
     <div className="min-h-screen pt-20" data-testid="page-portfolio">
       <section className="py-24 bg-gradient-hero relative overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/10 blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl" />
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimatedSection className="max-w-3xl mx-auto text-center">
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">
@@ -37,7 +37,7 @@ export default function Portfolio() {
               <span className="text-gradient"> & Case Studies</span>
             </h1>
             <p className="text-lg text-muted-foreground mt-6 leading-relaxed">
-              Explore our portfolio of successful projects across various industries. 
+              Explore our portfolio of successful projects across various industries.
               Each case study showcases our expertise in delivering impactful digital solutions.
             </p>
           </AnimatedSection>
@@ -102,16 +102,9 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {[
-              { name: "FinTech", count: 12 },
-              { name: "Healthcare", count: 8 },
-              { name: "E-commerce", count: 15 },
-              { name: "Logistics", count: 6 },
-              { name: "EdTech", count: 9 },
-              { name: "Real Estate", count: 5 },
-              { name: "Manufacturing", count: 4 },
-              { name: "Hospitality", count: 7 },
-              { name: "Insurance", count: 3 },
-              { name: "Non-Profit", count: 6 },
+              { name: "Cybersecurity", count: 1 },
+              { name: "Aviation", count: 1 },
+              { name: "FinTech", count: 1 },
             ].map((industry, index) => (
               <AnimatedSection key={industry.name} delay={index * 50}>
                 <div className="p-6 rounded-xl bg-card border border-border/50 text-center hover:-translate-y-1 transition-transform duration-300">
@@ -128,10 +121,10 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { value: "50+", label: "Projects Delivered" },
-              { value: "35+", label: "Happy Clients" },
-              { value: "12", label: "Countries" },
-              { value: "98%", label: "Success Rate" },
+              { value: "3+", label: "Projects Delivered" },
+              { value: "3+", label: "Happy Clients" },
+              { value: "2", label: "Countries" },
+              { value: "100%", label: "Success Rate" },
             ].map((stat, index) => (
               <AnimatedSection key={stat.label} delay={index * 100}>
                 <div className="text-center">

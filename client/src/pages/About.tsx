@@ -28,21 +28,11 @@ const values = [
 ];
 
 const team = [
-  { name: "Alex Rivera", role: "CEO & Founder", initials: "AR" },
-  { name: "Jordan Lee", role: "CTO", initials: "JL" },
-  { name: "Sam Patel", role: "Design Director", initials: "SP" },
-  { name: "Morgan Chen", role: "Lead Developer", initials: "MC" },
-  { name: "Taylor Kim", role: "AI Specialist", initials: "TK" },
-  { name: "Casey Brooks", role: "Project Manager", initials: "CB" },
+  { name: "Mitul Chovatiya", role: "CEO", initials: "MC" },
 ];
 
 const milestones = [
-  { year: "2019", title: "Founded", description: "Ventrox Tech was born from a vision to transform digital experiences." },
-  { year: "2020", title: "First Major Client", description: "Partnered with Fortune 500 company for enterprise solution." },
-  { year: "2021", title: "AI Division Launch", description: "Expanded services to include AI and machine learning solutions." },
-  { year: "2022", title: "Global Expansion", description: "Opened offices in Europe and Asia to serve clients worldwide." },
-  { year: "2023", title: "50+ Projects", description: "Reached milestone of 50+ successful project deliveries." },
-  { year: "2024", title: "Innovation Award", description: "Recognized as Top Tech Innovator by Industry Leaders." },
+  { year: "2025", title: "Founded", description: "Founded Ventrox Tech" },
 ];
 
 export default function About() {
@@ -51,7 +41,7 @@ export default function About() {
       <section className="py-24 bg-gradient-hero relative overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/10 blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl" />
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimatedSection className="max-w-3xl mx-auto text-center">
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">
@@ -62,7 +52,7 @@ export default function About() {
               <span className="text-gradient"> Digital World</span>
             </h1>
             <p className="text-lg text-muted-foreground mt-6 leading-relaxed">
-              Ventrox Tech is a team of passionate technologists, designers, and strategists 
+              Ventrox Tech is a team of passionate technologists, designers, and strategists
               dedicated to transforming businesses through innovative digital solutions.
             </p>
           </AnimatedSection>
@@ -81,8 +71,8 @@ export default function About() {
                   </div>
                   <h2 className="text-2xl font-bold mb-4 text-foreground">Our Mission</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    To empower businesses of all sizes with cutting-edge technology solutions that drive 
-                    growth, efficiency, and competitive advantage. We believe in making advanced technology 
+                    To empower businesses of all sizes with cutting-edge technology solutions that drive
+                    growth, efficiency, and competitive advantage. We believe in making advanced technology
                     accessible and impactful for every organization we partner with.
                   </p>
                 </CardContent>
@@ -98,8 +88,8 @@ export default function About() {
                   </div>
                   <h2 className="text-2xl font-bold mb-4 text-foreground">Our Vision</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    To be the global leader in digital transformation, recognized for our innovative 
-                    solutions, exceptional talent, and unwavering commitment to client success. We 
+                    To be the global leader in digital transformation, recognized for our innovative
+                    solutions, exceptional talent, and unwavering commitment to client success. We
                     envision a world where technology seamlessly enhances every aspect of business.
                   </p>
                 </CardContent>
@@ -121,19 +111,19 @@ export default function About() {
               </h2>
               <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Ventrox Tech was founded in 2019 with a simple yet powerful belief: technology 
-                  should be a catalyst for growth, not a barrier. Our founders, experienced 
-                  technologists with decades of combined experience, saw an opportunity to bridge 
+                  Ventrox Tech was founded in 2019 with a simple yet powerful belief: technology
+                  should be a catalyst for growth, not a barrier. Our founders, experienced
+                  technologists with decades of combined experience, saw an opportunity to bridge
                   the gap between innovative technology and practical business solutions.
                 </p>
                 <p>
-                  What started as a small team of five passionate developers has grown into a 
-                  thriving company with experts across application development, web technologies, 
-                  and artificial intelligence. We've helped startups launch their first products 
+                  What started as a small team of five passionate developers has grown into a
+                  thriving company with experts across application development, web technologies,
+                  and artificial intelligence. We've helped startups launch their first products
                   and enterprises transform their digital infrastructure.
                 </p>
                 <p>
-                  Today, we continue to push the boundaries of what's possible, always with our 
+                  Today, we continue to push the boundaries of what's possible, always with our
                   clients' success at the heart of everything we do.
                 </p>
               </div>
@@ -143,25 +133,25 @@ export default function About() {
               <div className="grid grid-cols-2 gap-4">
                 <Card className="border-border/50">
                   <CardContent className="p-6 text-center">
-                    <div className="text-4xl font-bold text-gradient mb-2">50+</div>
+                    <div className="text-4xl font-bold text-gradient mb-2">3+</div>
                     <p className="text-sm text-muted-foreground">Projects Completed</p>
                   </CardContent>
                 </Card>
                 <Card className="border-border/50">
                   <CardContent className="p-6 text-center">
-                    <div className="text-4xl font-bold text-gradient mb-2">98%</div>
+                    <div className="text-4xl font-bold text-gradient mb-2">100%</div>
                     <p className="text-sm text-muted-foreground">Client Satisfaction</p>
                   </CardContent>
                 </Card>
                 <Card className="border-border/50">
                   <CardContent className="p-6 text-center">
-                    <div className="text-4xl font-bold text-gradient mb-2">25+</div>
+                    <div className="text-4xl font-bold text-gradient mb-2">4+</div>
                     <p className="text-sm text-muted-foreground">Team Members</p>
                   </CardContent>
                 </Card>
                 <Card className="border-border/50">
                   <CardContent className="p-6 text-center">
-                    <div className="text-4xl font-bold text-gradient mb-2">12</div>
+                    <div className="text-4xl font-bold text-gradient mb-2">2</div>
                     <p className="text-sm text-muted-foreground">Countries Served</p>
                   </CardContent>
                 </Card>
@@ -219,10 +209,10 @@ export default function About() {
             </p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {team.map((member, index) => (
               <AnimatedSection key={member.name} delay={index * 50}>
-                <Card className="border-border/50 text-center" data-testid={`card-team-${index}`}>
+                <Card className="border-border/50 text-center w-48" data-testid={`card-team-${index}`}>
                   <CardContent className="p-6">
                     <Avatar className="w-16 h-16 mx-auto mb-4 border-2 border-primary/20">
                       <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-lg font-medium">
@@ -252,7 +242,7 @@ export default function About() {
 
           <div className="relative">
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border" />
-            
+
             <div className="space-y-12">
               {milestones.map((milestone, index) => (
                 <AnimatedSection
@@ -270,9 +260,9 @@ export default function About() {
                         </CardContent>
                       </Card>
                     </div>
-                    
+
                     <div className="relative z-10 w-4 h-4 rounded-full bg-primary border-4 border-background" />
-                    
+
                     <div className="flex-1" />
                   </div>
                 </AnimatedSection>

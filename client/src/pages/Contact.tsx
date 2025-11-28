@@ -51,20 +51,20 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    value: "hello@ventrox.tech",
+    value: "mitul@ventroxtech.in",
     description: "We'll respond within 24 hours",
   },
   {
     icon: Phone,
     title: "Call Us",
-    value: "+1 (555) 123-4567",
-    description: "Mon-Fri 9am-6pm PST",
+    value: "+91 6354243008",
+    description: "Mon-Fri 9am-6pm IST",
   },
   {
     icon: MapPin,
     title: "Visit Us",
-    value: "123 Innovation Drive",
-    description: "San Francisco, CA 94105",
+    value: "1103, White Palace",
+    description: "Utran, Surat, Gujarat, India",
   },
   {
     icon: Clock,
@@ -120,7 +120,7 @@ export default function Contact() {
       <section className="py-24 bg-gradient-hero relative overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/10 blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl" />
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimatedSection className="max-w-3xl mx-auto text-center">
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">
@@ -131,7 +131,7 @@ export default function Contact() {
               <span className="text-gradient"> Amazing Together</span>
             </h1>
             <p className="text-lg text-muted-foreground mt-6 leading-relaxed">
-              Have a project in mind? We'd love to hear about it. 
+              Have a project in mind? We'd love to hear about it.
               Get in touch and let's start the conversation.
             </p>
           </AnimatedSection>

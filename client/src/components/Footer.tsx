@@ -32,7 +32,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <VentroxLogo size="lg" />
             <p className="mt-4 text-muted-foreground max-w-sm leading-relaxed">
-              Transforming businesses through innovative technology solutions. 
+              Transforming businesses through innovative technology solutions.
               We build the future, one pixel at a time.
             </p>
             <div className="flex items-center gap-2 mt-6">
@@ -83,15 +83,15 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Mail className="h-4 w-4 text-primary" />
-                <span data-testid="text-footer-email">hello@ventrox.tech</span>
+                <span data-testid="text-footer-email">mitul@ventroxtech.in</span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground text-sm">
                 <Phone className="h-4 w-4 text-primary" />
-                <span data-testid="text-footer-phone">+1 (555) 123-4567</span>
+                <span data-testid="text-footer-phone">+91 6354243008</span>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground text-sm">
                 <MapPin className="h-4 w-4 text-primary mt-0.5" />
-                <span data-testid="text-footer-address">123 Innovation Drive<br />San Francisco, CA 94105</span>
+                <span data-testid="text-footer-address">1103, White Palace<br />Utran, Surat, Gujarat, India</span>
               </li>
             </ul>
           </div>

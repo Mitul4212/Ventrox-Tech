@@ -48,7 +48,7 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <HeroBackground />
         <FloatingShapes />
-        
+
         <div className="max-w-7xl mx-auto px-6 py-24 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <AnimatedSection delay={0}>
@@ -57,7 +57,7 @@ export default function Home() {
                 <span className="text-sm font-medium text-primary">Digital Innovation Experts</span>
               </div>
             </AnimatedSection>
-            
+
             <AnimatedSection delay={100}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                 <span className="text-foreground">Build the </span>
@@ -66,14 +66,14 @@ export default function Home() {
                 <span className="text-foreground">of Your Business</span>
               </h1>
             </AnimatedSection>
-            
+
             <AnimatedSection delay={200}>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-                We transform ideas into powerful digital experiences. From cutting-edge applications 
+                We transform ideas into powerful digital experiences. From cutting-edge applications
                 to intelligent AI solutions, Ventrox Tech delivers innovation that drives results.
               </p>
             </AnimatedSection>
-            
+
             <AnimatedSection delay={300}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/contact">
@@ -89,16 +89,16 @@ export default function Home() {
                 </Link>
               </div>
             </AnimatedSection>
-            
+
             <AnimatedSection delay={400}>
               <div className="flex flex-wrap items-center justify-center gap-6 mt-12 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-primary" />
-                  <span>50+ Projects Delivered</span>
+                  <span>3+ Projects Delivered</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-primary" />
-                  <span>98% Client Satisfaction</span>
+                  <span>100% Client Satisfaction</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-primary" />
@@ -108,7 +108,7 @@ export default function Home() {
             </AnimatedSection>
           </div>
         </div>
-        
+
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </section>
 
@@ -122,7 +122,7 @@ export default function Home() {
               What We Do Best
             </h2>
             <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-              From concept to deployment, we provide end-to-end digital solutions that 
+              From concept to deployment, we provide end-to-end digital solutions that
               help businesses thrive in the modern era.
             </p>
           </AnimatedSection>
@@ -192,7 +192,7 @@ export default function Home() {
               Featured Projects
             </h2>
             <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-              Explore some of our recent success stories and see how we've helped 
+              Explore some of our recent success stories and see how we've helped
               businesses achieve their digital goals.
             </p>
           </AnimatedSection>
