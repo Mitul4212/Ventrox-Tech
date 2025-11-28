@@ -7,12 +7,26 @@
         },
         {
             "source": "/api/(.*)",
-            "destination": "/api/index.ts"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
-    ],
-    "outputDirectory": "dist/public"
-}
+            "destination": "/api/index.ts"{
+                "version": 2,
+                "rewrites": [
+                    {
+                        "source": "/api/test",
+                        "destination": "/api/test.ts"
+                    },
+                    {
+                        "source": "/api/(.*)",
+                        "destination": "/api/index.ts"
+                    },
+                    {
+                        "source": "/(.*)",
+                        "destination": "/index.html"
+                    }
+                ],
+                "outputDirectory": "dist/public",
+                "functions": {
+                    "api/**/*": {
+                        "includeFiles": "server/**, shared/**"
+                    }
+                }
+            }
