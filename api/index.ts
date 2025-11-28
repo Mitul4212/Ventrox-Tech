@@ -1,4 +1,3 @@
-```typescript
 export default async function handler(req: any, res: any) {
   try {
     if (!process.env.DATABASE_URL) {
@@ -11,10 +10,10 @@ export default async function handler(req: any, res: any) {
   } catch (e: any) {
     console.error("Vercel Function Error:", e);
     // Return 200 so we can see the error in the browser
-    res.status(200).json({ 
+    res.status(200).json({
       status: "error",
       message: "Application failed to start",
-      error_message: e.message, 
+      error_message: e.message,
       stack: e.stack,
       env: {
         hasDbUrl: !!process.env.DATABASE_URL,
@@ -23,4 +22,3 @@ export default async function handler(req: any, res: any) {
     });
   }
 }
-```
