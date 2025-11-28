@@ -1,6 +1,6 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage } from "./storage.js";
 import {
   insertContactInquirySchema,
   insertBlogPostSchema,
@@ -8,7 +8,7 @@ import {
   insertPageViewSchema,
   defaultPortfolioProjects
 } from "@shared/schema";
-import { db } from "./db";
+import { db } from "./db.js";
 import { users, contactInquiries, blogPosts, portfolioProjectsTable, pageViews } from "../../shared/schema";
 import { z } from "zod";
 import session from "express-session";

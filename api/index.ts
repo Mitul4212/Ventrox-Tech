@@ -1,4 +1,4 @@
-import { app, setup } from "./lib/app";
+import { app, setup } from "./lib/app.js";
 
 export default async function handler(req: any, res: any) {
   try {
