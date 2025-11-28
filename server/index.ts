@@ -83,7 +83,11 @@ export async function setup() {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   setup().then(async () => {
     if (process.env.NODE_ENV === "production") {
-      serveStatic(app);
+      try {
+        serveStatic(app);
+      } catch (e) {
+        console.warn("Failed to serve static files (this is expected in Vercel API functions):", e);
+      }
     } else {
       const { setupVite } = await import("./vite");
       await setupVite(httpServer, app);
