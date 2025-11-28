@@ -1,9 +1,9 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { 
-  insertContactInquirySchema, 
-  insertBlogPostSchema, 
+import {
+  insertContactInquirySchema,
+  insertBlogPostSchema,
   insertPortfolioProjectSchema,
   insertPageViewSchema,
   defaultPortfolioProjects
@@ -116,17 +116,17 @@ export async function registerRoutes(
       if (existingAdmin) {
         return res.status(400).json({ success: false, message: "Admin already exists" });
       }
-      
+
       const hashedPassword = await hashPassword("admin123");
       await storage.createUser({ username: "admin", password: hashedPassword });
-      
+
       const existingProjects = await storage.getPortfolioProjects();
       if (existingProjects.length === 0) {
         for (const project of defaultPortfolioProjects) {
           await storage.createPortfolioProject(project);
         }
       }
-      
+
       res.json({ success: true, message: "Admin setup complete. Default credentials: admin / admin123" });
     } catch (error) {
       console.error("Setup error:", error);
@@ -138,7 +138,7 @@ export async function registerRoutes(
     try {
       const validatedData = insertContactInquirySchema.parse(req.body);
       const inquiry = await storage.createContactInquiry(validatedData);
-      
+
       res.status(201).json({
         success: true,
         message: "Thank you for your inquiry. We will get back to you soon!",
@@ -271,9 +271,14 @@ export async function registerRoutes(
     try {
       const projects = await storage.getPortfolioProjects();
       res.json({ success: true, data: projects });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Get portfolio error:", error);
-      res.status(500).json({ success: false, message: "Failed to fetch portfolio" });
+      res.status(500).json({
+        success: false,
+        message: "Failed to fetch portfolio",
+        error_details: error.message,
+        stack: error.stack
+      });
     }
   });
 
@@ -340,7 +345,7 @@ export async function registerRoutes(
         storage.getTotalPageViews(),
         storage.getContactInquiries(),
       ]);
-      
+
       res.json({
         success: true,
         data: {
