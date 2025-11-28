@@ -1,19 +1,25 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { PortfolioCard } from "@/components/PortfolioCard";
 import { CTASection } from "@/components/CTASection";
-import { portfolioProjects } from "@shared/schema";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { PortfolioProject } from "@shared/schema";
+import { Loader2 } from "lucide-react";
 
 const industries = ["All", "FinTech", "Healthcare", "E-commerce", "Logistics", "EdTech"];
 
 export default function Portfolio() {
   const [selectedIndustry, setSelectedIndustry] = useState("All");
 
+  const { data: projectsData, isLoading } = useQuery<{ success: boolean; data: PortfolioProject[] }>({
+    queryKey: ["/api/portfolio"],
+  });
+
+  const projects = projectsData?.data || [];
   const filteredProjects = selectedIndustry === "All"
-    ? portfolioProjects
-    : portfolioProjects.filter((p) => p.industry === selectedIndustry);
+    ? projects
+    : projects.filter((p) => p.industry === selectedIndustry);
 
   return (
     <div className="min-h-screen pt-20" data-testid="page-portfolio">
@@ -58,15 +64,21 @@ export default function Portfolio() {
 
       <section className="py-24 bg-background" data-testid="section-portfolio-grid">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="space-y-12">
-            {filteredProjects.map((project, index) => (
-              <AnimatedSection key={project.id} delay={index * 100}>
-                <PortfolioCard project={project} variant="default" />
-              </AnimatedSection>
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="flex justify-center py-16">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : (
+            <div className="space-y-12">
+              {filteredProjects.map((project, index) => (
+                <AnimatedSection key={project.id} delay={index * 100}>
+                  <PortfolioCard project={project} variant="default" />
+                </AnimatedSection>
+              ))}
+            </div>
+          )}
 
-          {filteredProjects.length === 0 && (
+          {!isLoading && filteredProjects.length === 0 && (
             <div className="text-center py-16">
               <p className="text-muted-foreground">No projects found for this category.</p>
             </div>

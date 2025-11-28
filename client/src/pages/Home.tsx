@@ -8,8 +8,10 @@ import { PortfolioCard } from "@/components/PortfolioCard";
 import { TestimonialsSection } from "@/components/TestimonialCard";
 import { TechStackSection } from "@/components/TechStackSection";
 import { CTASection } from "@/components/CTASection";
-import { services, portfolioProjects } from "@shared/schema";
-import { ArrowRight, CheckCircle2, Zap, Shield, Users, Rocket } from "lucide-react";
+import { services } from "@shared/schema";
+import type { PortfolioProject } from "@shared/schema";
+import { ArrowRight, CheckCircle2, Zap, Shield, Users, Rocket, Loader2 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 const whyChooseUs = [
   {
@@ -35,6 +37,12 @@ const whyChooseUs = [
 ];
 
 export default function Home() {
+  const { data: projectsData, isLoading } = useQuery<{ success: boolean; data: PortfolioProject[] }>({
+    queryKey: ["/api/portfolio"],
+  });
+
+  const featuredProjects = projectsData?.data?.filter(p => p.featured).slice(0, 3) || [];
+
   return (
     <div className="min-h-screen" data-testid="page-home">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -189,13 +197,19 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portfolioProjects.slice(0, 3).map((project, index) => (
-              <AnimatedSection key={project.id} delay={index * 100}>
-                <PortfolioCard project={project} variant="featured" />
-              </AnimatedSection>
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="flex justify-center py-16">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {featuredProjects.map((project, index) => (
+                <AnimatedSection key={project.id} delay={index * 100}>
+                  <PortfolioCard project={project} variant="featured" />
+                </AnimatedSection>
+              ))}
+            </div>
+          )}
 
           <AnimatedSection className="text-center mt-12">
             <Link href="/portfolio">

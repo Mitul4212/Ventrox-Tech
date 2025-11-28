@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -10,7 +10,31 @@ import About from "@/pages/About";
 import Services from "@/pages/Services";
 import Portfolio from "@/pages/Portfolio";
 import Contact from "@/pages/Contact";
+import Blog from "@/pages/Blog";
+import Admin from "@/pages/Admin";
 import NotFound from "@/pages/not-found";
+import { useEffect } from "react";
+import { apiRequest } from "./lib/queryClient";
+
+function PageViewTracker() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const trackPageView = async () => {
+      try {
+        await apiRequest("POST", "/api/analytics/pageview", {
+          path: location,
+          referrer: document.referrer || null,
+        });
+      } catch {
+        // Silently fail - analytics shouldn't break the app
+      }
+    };
+    trackPageView();
+  }, [location]);
+
+  return null;
+}
 
 function Router() {
   return (
@@ -20,21 +44,27 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/contact" component={Contact} />
+      <Route path="/blog/:slug?" component={Blog} />
+      <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
 function App() {
+  const [location] = useLocation();
+  const isAdmin = location === "/admin";
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <PageViewTracker />
         <div className="flex flex-col min-h-screen">
-          <Navigation />
+          {!isAdmin && <Navigation />}
           <main className="flex-1">
             <Router />
           </main>
-          <Footer />
+          {!isAdmin && <Footer />}
         </div>
         <Toaster />
       </TooltipProvider>

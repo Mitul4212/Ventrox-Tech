@@ -19,7 +19,7 @@ const projectColors: Record<string, { gradient: string; accent: string }> = {
 };
 
 export function PortfolioCard({ project, variant = "default" }: PortfolioCardProps) {
-  const colors = projectColors[project.image] || projectColors.fintech;
+  const colors = projectColors[project.image || "fintech"] || projectColors.fintech;
 
   if (variant === "featured") {
     return (

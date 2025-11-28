@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, boolean, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -7,6 +7,8 @@ export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
+  isAdmin: boolean("is_admin").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({
@@ -24,16 +26,79 @@ export const contactInquiries = pgTable("contact_inquiries", {
   company: text("company"),
   inquiryType: text("inquiry_type").notNull(),
   message: text("message").notNull(),
+  status: text("status").default("new"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const insertContactInquirySchema = createInsertSchema(contactInquiries).omit({
   id: true,
+  status: true,
   createdAt: true,
 });
 
 export type InsertContactInquiry = z.infer<typeof insertContactInquirySchema>;
 export type ContactInquiry = typeof contactInquiries.$inferSelect;
+
+export const blogPosts = pgTable("blog_posts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  excerpt: text("excerpt").notNull(),
+  content: text("content").notNull(),
+  category: text("category").notNull(),
+  author: text("author").notNull(),
+  coverImage: text("cover_image"),
+  published: boolean("published").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
+export type BlogPost = typeof blogPosts.$inferSelect;
+
+export const portfolioProjectsTable = pgTable("portfolio_projects", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  industry: text("industry").notNull(),
+  problem: text("problem").notNull(),
+  solution: text("solution").notNull(),
+  outcome: text("outcome").notNull(),
+  techStack: text("tech_stack").array().notNull(),
+  image: text("image"),
+  featured: boolean("featured").default(false),
+  order: integer("display_order").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertPortfolioProjectSchema = createInsertSchema(portfolioProjectsTable).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertPortfolioProject = z.infer<typeof insertPortfolioProjectSchema>;
+export type PortfolioProject = typeof portfolioProjectsTable.$inferSelect;
+
+export const pageViews = pgTable("page_views", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  path: text("path").notNull(),
+  referrer: text("referrer"),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertPageViewSchema = createInsertSchema(pageViews).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertPageView = z.infer<typeof insertPageViewSchema>;
+export type PageView = typeof pageViews.$inferSelect;
 
 export const services = [
   {
@@ -130,57 +195,60 @@ export const services = [
 
 export type Service = typeof services[number];
 
-export const portfolioProjects = [
+export const defaultPortfolioProjects = [
   {
-    id: "fintech-app",
     title: "NexaPay Financial Suite",
     industry: "FinTech",
     problem: "A leading financial institution needed a modern mobile banking solution to compete with digital-first banks.",
     solution: "We developed a comprehensive mobile banking app with biometric authentication, real-time transactions, and AI-powered financial insights.",
     outcome: "300% increase in mobile transactions, 4.8 app store rating, 1M+ downloads in first year.",
     techStack: ["React Native", "Node.js", "PostgreSQL", "AWS", "Plaid API"],
-    image: "fintech"
+    image: "fintech",
+    featured: true,
+    order: 1
   },
   {
-    id: "healthcare-platform",
     title: "MediConnect Health Platform",
     industry: "Healthcare",
     problem: "A healthcare network struggled with patient engagement and appointment management across multiple facilities.",
     solution: "Built an integrated health platform with telemedicine, appointment scheduling, and secure patient portal.",
     outcome: "50% reduction in no-shows, 85% patient satisfaction score, seamless multi-facility coordination.",
     techStack: ["Next.js", "TypeScript", "MongoDB", "WebRTC", "HIPAA Compliant"],
-    image: "healthcare"
+    image: "healthcare",
+    featured: true,
+    order: 2
   },
   {
-    id: "ecommerce-platform",
     title: "LuxeMarket Commerce",
     industry: "E-commerce",
     problem: "A luxury retail brand needed an online presence that matched their premium in-store experience.",
     solution: "Created a high-end e-commerce platform with 3D product visualization, AR try-on, and personalized recommendations.",
     outcome: "200% increase in online sales, 45% higher average order value, 60% return customer rate.",
     techStack: ["React", "Three.js", "Shopify Plus", "AI Recommendations", "CDN"],
-    image: "ecommerce"
+    image: "ecommerce",
+    featured: true,
+    order: 3
   },
   {
-    id: "logistics-ai",
     title: "FleetIQ Logistics",
     industry: "Logistics",
     problem: "A logistics company faced inefficiencies in route planning and fleet management across 500+ vehicles.",
     solution: "Developed an AI-powered fleet management system with predictive maintenance and dynamic route optimization.",
     outcome: "30% fuel savings, 40% reduction in delivery times, 99.5% on-time delivery rate.",
     techStack: ["Python", "TensorFlow", "React", "IoT Sensors", "Google Maps API"],
-    image: "logistics"
+    image: "logistics",
+    featured: false,
+    order: 4
   },
   {
-    id: "education-platform",
     title: "EduVerse Learning",
     industry: "EdTech",
     problem: "An educational institution needed to modernize their learning management and student engagement approach.",
     solution: "Built an immersive learning platform with gamification, adaptive learning paths, and real-time collaboration.",
     outcome: "40% improvement in course completion, 3x student engagement, adopted by 50+ institutions.",
     techStack: ["Vue.js", "Node.js", "PostgreSQL", "WebSocket", "ML Algorithms"],
-    image: "education"
+    image: "education",
+    featured: false,
+    order: 5
   }
-] as const;
-
-export type PortfolioProject = typeof portfolioProjects[number];
+];
