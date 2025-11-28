@@ -273,10 +273,11 @@ export async function registerRoutes(
       res.json({ success: true, data: projects });
     } catch (error: any) {
       console.error("Get portfolio error:", error);
-      res.status(500).json({
-        success: false,
+      // Return 200 with error status so frontend can display it
+      res.status(200).json({
+        status: "error",
         message: "Failed to fetch portfolio",
-        error_details: error.message,
+        error_message: error.message,
         stack: error.stack
       });
     }
