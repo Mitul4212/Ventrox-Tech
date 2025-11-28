@@ -2,7 +2,7 @@ services:
   - type: web
     name: ventrox-tech
     env: node
-    buildCommand: npm install --include=dev && npm run build
+    buildCommand: rm -f package-lock.json && npm install && npm run build
     startCommand: npm start
     envVars:
       - key: DATABASE_URL
