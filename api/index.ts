@@ -1,10 +1,11 @@
+import { app, setup } from "../server/app";
+
 export default async function handler(req: any, res: any) {
   try {
     if (!process.env.DATABASE_URL) {
       throw new Error("DATABASE_URL is missing in Vercel Environment Variables");
     }
 
-    const { app, setup } = await import("../server/app");
     await setup();
     app(req, res);
   } catch (e: any) {
