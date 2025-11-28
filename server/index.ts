@@ -1,31 +1,27 @@
 import { app, httpServer, setup, log } from "../api/lib/app.js";
 import { serveStatic } from "./static.js";
-import { fileURLToPath } from "url";
-
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  setup().then(async () => {
-    if (process.env.NODE_ENV === "production") {
-      try {
-        serveStatic(app);
-      } catch (e) {
-        console.warn("Failed to serve static files:", e);
-      }
-    } else {
-      const { setupVite } = await import("./vite.js");
-      await setupVite(httpServer, app);
+setup().then(async () => {
+  if (process.env.NODE_ENV === "production") {
+    try {
+      serveStatic(app);
+    } catch (e) {
+      console.warn("Failed to serve static files:", e);
     }
+  } else {
+    const { setupVite } = await import("./vite.js");
+    await setupVite(httpServer, app);
+  }
 
-    const port = parseInt(process.env.PORT || "5000", 10);
-    httpServer.listen(
-      {
-        port,
-        host: "localhost",
-      },
-      () => {
-        log(`serving on port ${port}`);
-      },
-    );
-  });
-}
+  const port = parseInt(process.env.PORT || "5000", 10);
+  httpServer.listen(
+    {
+      port,
+      host: "0.0.0.0",
+    },
+    () => {
+      log(`serving on port ${port}`);
+    },
+  );
+});
 
 export { app, setup };
