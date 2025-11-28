@@ -1,0 +1,487 @@
+
+🔥 FINAL MASTER PROMPT — VENTROX TECH WEBSITE (FULL PRO VERSION)
+
+ROLE & EXPERTISE
+
+You are a senior brand designer, UI/UX lead, full-stack web developer, motion designer, and identity strategist.
+Your job is to build a premium, futuristic, high-tech website for Ventrox Tech with unique branding, custom fonts, animations, and a professional multi-page structure.
+
+
+---
+
+🚀 COMPANY DETAILS
+
+Company Name: Ventrox Tech
+Industry: Technology & Digital Innovation
+Services:
+
+Application Development
+
+Website Development
+
+AI Automation Solutions
+
+
+Brand Personality:
+Futuristic • Minimal • Premium • Innovative • Confident • High-tech
+
+
+---
+
+🎨 1. BRANDING SYSTEM (Build From Scratch)
+
+A. Custom Logo (Mandatory)
+
+Create a unique logo for Ventrox Tech:
+
+Style: Futuristic geometric “V”
+
+Shape: Sharp, angular, minimal
+
+Colors: Electric Blue + Black or White
+
+Features: Subtle tech pattern or circuitry accents
+
+Versions:
+
+Light Mode
+
+Dark Mode
+
+Favicon version
+
+SVG or PNG (if supported)
+
+
+
+Include:
+
+Logo description
+
+Logo concept explanation
+
+Logo usage rules
+
+Add logo inside website header, footer, and favicon
+
+
+
+---
+
+B. Typography (No Default Fonts)
+
+Select 2–3 premium, modern, tech-friendly fonts:
+
+Heading Font (Futuristic):
+Choose from:
+
+Orbitron
+
+Space Grotesk
+
+Exo 2
+
+Oxanium
+Pick the best fit and justify the choice.
+
+
+Body Font (Clean Professional):
+Choose from:
+
+Inter
+
+Satoshi
+
+Plus Jakarta Sans
+
+IBM Plex Sans
+
+
+Accent / Code-style Font (Optional):
+
+JetBrains Mono
+
+Roboto Mono
+
+
+Provide:
+
+Font pairing explanation
+
+Usage rules (headings, paragraphs, buttons, highlights)
+
+Line height + spacing system
+
+
+
+---
+
+C. Color Palette (Custom Premium Colors)
+
+Generate a Ventrox Tech–branded palette using:
+
+Primary:
+
+Electric Tech Blue
+
+Deep Black / Charcoal
+
+
+Secondary Accents:
+
+Neon Violet
+
+Aqua Glow
+
+Tech Silver
+
+
+Backgrounds:
+
+Pure White
+
+Gradient Black
+
+
+Provide:
+
+HEX codes
+
+RGB values
+
+Usage rules (background, buttons, highlights, section dividers)
+
+
+
+---
+
+🖥️ 2. ADVANCED UI/UX DESIGN REQUIREMENTS
+
+UI Style:
+
+Futuristic minimal
+
+High-tech geometric shapes
+
+Premium spacing
+
+Mixed soft + sharp edges
+
+Glassmorphism areas (optional)
+
+Glowing neon accents (subtle)
+
+Smooth gradient backgrounds
+
+Professional card layouts
+
+Parallax or slight 3D interactions
+
+
+
+---
+
+Animations & Motion Effects
+
+Add motion throughout the site:
+
+Global Animations:
+
+Smooth page fade-in
+
+Scroll-based reveal animations
+
+
+Hero Section:
+
+Text fade-in + upward motion
+
+Light particle effect (minimal)
+
+Floating geometric shapes or lines
+
+
+Service Cards:
+
+Hover lift
+
+Glow border effect
+
+Icon pulse animation
+
+
+Buttons:
+
+Ripple click animation
+
+Neon hover glow
+
+
+Logo:
+
+Very subtle pulse or shape reveal
+
+
+Sections:
+
+Slide-in animations
+
+Progressive reveal on scroll
+
+
+Provide:
+
+Animation descriptions
+
+Timing (ms)
+
+Ease type (ease-out, cubic, etc.)
+
+CSS/JS examples (if supported)
+
+
+
+---
+
+📄 3. FULL WEBSITE STRUCTURE
+
+Generate full content + layout + UI instructions for:
+
+
+---
+
+A. Startup Landing Page
+
+Sections required:
+
+1. Hero Section
+
+Bold headline
+
+Futuristic subheadline
+
+Call-To-Action buttons
+
+Background elements
+
+Parallax or motion effect
+
+
+
+2. Our Services Overview
+
+
+3. Why Choose Us (3–5 points)
+
+
+4. Tech Strengths (AI + App Dev + Web Dev)
+
+
+5. Mini case studies preview
+
+
+6. Testimonials (placeholder)
+
+
+7. CTA — Contact / Get Quote
+
+
+
+
+---
+
+B. Multi-Page Website
+
+1. Home Page
+
+Hero
+
+Company intro
+
+Services grid
+
+Technology used
+
+Portfolio preview
+
+CTA
+
+
+
+---
+
+2. About Us Page
+
+Mission
+
+Vision
+
+About Ventrox Tech
+
+Team (placeholder)
+
+Company values
+
+Timeline or journey
+
+
+
+---
+
+3. Services Page
+
+Each service must include:
+
+Overview
+
+Features
+
+Benefits
+
+6-step process
+
+Deliverables
+
+Tech stack used
+Services:
+
+App Development
+
+Website Development
+
+AI Automation
+
+
+
+---
+
+4. Portfolio / Case Studies Page
+
+Create 4–6 fictional professional projects:
+
+Project name
+
+Industry
+
+Problem
+
+Solution
+
+Tech stack
+
+Outcome
+
+Visual layout (describe UI images)
+
+
+
+---
+
+5. Contact Page
+
+Contact form
+
+Inquiry categories
+
+CTA
+
+Map (placeholder)
+
+Email + phone (placeholder)
+
+
+
+---
+
+🧩 4. OUTPUT FORMAT (STRICT)
+
+Deliver the output in this order:
+
+
+---
+
+1. LOGO DESIGN
+
+Logo concept
+
+Style explanation
+
+Variations (light/dark/favicon)
+
+Add SVG/PNG (if possible)
+
+
+
+---
+
+2. BRAND GUIDELINES
+
+Typography set
+
+Color palette
+
+UI components
+
+Buttons
+
+Cards
+
+Icon style
+
+Spacing system
+
+
+
+---
+
+3. COMPLETE WEBSITE COPY & UI LAYOUT
+
+A. Landing Page (Full Content + UI Instructions)
+
+B. Home Page
+
+C. About Page
+
+D. Services Page (all 3 services)
+
+E. Portfolio Page
+
+F. Contact Page
+
+
+---
+
+4. ANIMATION SYSTEM
+
+Animation list
+
+Timing
+
+Motion style
+
+Parallax rules
+
+Interaction guidelines
+
+
+
+---
+
+5. OPTIONAL:
+
+Provide HTML/CSS/JS version or components (if supported).
+
+
+---
+
+🧨 FINAL DELIVERY REQUIREMENT
+
+The entire website should feel:
+
+💠 Ultra-modern
+💠 Premium & branded
+💠 Trustworthy
+💠 Highly designed
+💠 Non-generic
+💠 Scalable for real business
+💠 Perfect for Ventrox Tech’s tech identity
