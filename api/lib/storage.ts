@@ -46,6 +46,158 @@ export interface IStorage {
   getTotalPageViews(): Promise<number>;
 }
 
+export class MemStorage implements IStorage {
+  private users: Map<string, User>;
+  private contactInquiries: Map<string, ContactInquiry>;
+  private blogPosts: Map<string, BlogPost>;
+  private portfolioProjects: Map<string, PortfolioProject>;
+  private pageViews: Map<number, PageView>;
+  private currentId: number;
+
+  constructor() {
+    this.users = new Map();
+    this.contactInquiries = new Map();
+    this.blogPosts = new Map();
+    this.portfolioProjects = new Map();
+    this.pageViews = new Map();
+    this.currentId = 1;
+  }
+
+  async getUser(id: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find((u) => u.id.toString() === id);
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find((u) => u.username === username);
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const id = this.currentId++;
+    const user: User = { ...insertUser, id, createdAt: new Date() };
+    this.users.set(id.toString(), user);
+    return user;
+  }
+
+  async createContactInquiry(inquiry: InsertContactInquiry): Promise<ContactInquiry> {
+    const id = this.currentId++;
+    const newInquiry: ContactInquiry = {
+      ...inquiry,
+      id,
+      createdAt: new Date(),
+      status: "new" // Default status
+    };
+    this.contactInquiries.set(id.toString(), newInquiry);
+    return newInquiry;
+  }
+
+  async getContactInquiries(): Promise<ContactInquiry[]> {
+    return Array.from(this.contactInquiries.values()).sort((a, b) =>
+      (b.createdAt?.getTime() || 0) - (a.createdAt?.getTime() || 0)
+    );
+  }
+
+  async getContactInquiry(id: string): Promise<ContactInquiry | undefined> {
+    return this.contactInquiries.get(id);
+  }
+
+  async updateContactInquiryStatus(id: string, status: string): Promise<ContactInquiry | undefined> {
+    const inquiry = this.contactInquiries.get(id);
+    if (!inquiry) return undefined;
+    const updated = { ...inquiry, status };
+    this.contactInquiries.set(id, updated);
+    return updated;
+  }
+
+  async createBlogPost(post: InsertBlogPost): Promise<BlogPost> {
+    const id = this.currentId++;
+    const newPost: BlogPost = {
+      ...post,
+      id,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      published: post.published ?? false
+    };
+    this.blogPosts.set(id.toString(), newPost);
+    return newPost;
+  }
+
+  async getBlogPosts(publishedOnly = false): Promise<BlogPost[]> {
+    let posts = Array.from(this.blogPosts.values());
+    if (publishedOnly) {
+      posts = posts.filter(p => p.published);
+    }
+    return posts.sort((a, b) => (b.createdAt?.getTime() || 0) - (a.createdAt?.getTime() || 0));
+  }
+
+  async getBlogPost(id: string): Promise<BlogPost | undefined> {
+    return this.blogPosts.get(id);
+  }
+
+  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+    return Array.from(this.blogPosts.values()).find(p => p.slug === slug);
+  }
+
+  async updateBlogPost(id: string, data: Partial<InsertBlogPost>): Promise<BlogPost | undefined> {
+    const post = this.blogPosts.get(id);
+    if (!post) return undefined;
+    const updated = { ...post, ...data, updatedAt: new Date() };
+    this.blogPosts.set(id, updated);
+    return updated;
+  }
+
+  async deleteBlogPost(id: string): Promise<boolean> {
+    return this.blogPosts.delete(id);
+  }
+
+  async createPortfolioProject(project: InsertPortfolioProject): Promise<PortfolioProject> {
+    const id = this.currentId++;
+    const newProject: PortfolioProject = { ...project, id, createdAt: new Date() };
+    this.portfolioProjects.set(id.toString(), newProject);
+    return newProject;
+  }
+
+  async getPortfolioProjects(): Promise<PortfolioProject[]> {
+    return Array.from(this.portfolioProjects.values()).sort((a, b) => a.order - b.order);
+  }
+
+  async getPortfolioProject(id: string): Promise<PortfolioProject | undefined> {
+    return this.portfolioProjects.get(id);
+  }
+
+  async updatePortfolioProject(id: string, data: Partial<InsertPortfolioProject>): Promise<PortfolioProject | undefined> {
+    const project = this.portfolioProjects.get(id);
+    if (!project) return undefined;
+    const updated = { ...project, ...data };
+    this.portfolioProjects.set(id, updated);
+    return updated;
+  }
+
+  async deletePortfolioProject(id: string): Promise<boolean> {
+    return this.portfolioProjects.delete(id);
+  }
+
+  async trackPageView(view: InsertPageView): Promise<PageView> {
+    const id = this.currentId++;
+    const newView: PageView = { ...view, id, timestamp: new Date() };
+    this.pageViews.set(id, newView);
+    return newView;
+  }
+
+  async getPageViewStats(): Promise<{ path: string; views: number }[]> {
+    const stats = new Map<string, number>();
+    for (const view of this.pageViews.values()) {
+      stats.set(view.path, (stats.get(view.path) || 0) + 1);
+    }
+    return Array.from(stats.entries())
+      .map(([path, views]) => ({ path, views }))
+      .sort((a, b) => b.views - a.views);
+  }
+
+  async getTotalPageViews(): Promise<number> {
+    return this.pageViews.size;
+  }
+}
+
 export class DatabaseStorage implements IStorage {
   async getUser(id: string): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(users.id, id));
@@ -174,4 +326,4 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-export const storage = new DatabaseStorage();
+export const storage = process.env.DATABASE_URL ? new DatabaseStorage() : new MemStorage();
