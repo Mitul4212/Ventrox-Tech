@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { db } from "../api/lib/db";
 import { portfolioProjectsTable } from "../shared/schema";
 import { sql } from "drizzle-orm";
@@ -15,7 +16,7 @@ async function updateProjects() {
             solution: "Built a high-performance VPN application using OpenVPN via VpnService, implementing server scoring and load balancing across 50+ global servers. Added background update handling with WorkManager, real-time speed dashboards, 3D globe visualization, dark mode, and secure multi-provider authentication.",
             outcome: "Delivered a stable, secure VPN platform achieving 99.9% ANR-free sessions, improved global connectivity performance, and enhanced user experience through real-time network insights and reliable encrypted connections.",
             techStack: ["Kotlin", "MVVM", "OpenVPN", "VpnService", "Coroutines", "WorkManager"],
-            image: "fintech", // Using existing image placeholder for now
+            image: "/nocturnevpn-edited.png",
             featured: true,
             order: 1
         },
@@ -26,7 +27,7 @@ async function updateProjects() {
             solution: "Developed a cloud-based monitoring system with automated compliance tracking, real-time maintenance alerts, and a role-based dashboard for engineers and operations teams. Integrated secure data syncing for offline airport environments.",
             outcome: "Reduced compliance reporting time by 45%, improved maintenance issue detection accuracy, and streamlined operational communication across airport locations.",
             techStack: ["React", "Node.js", "PostgreSQL", "AWS Lambda", "Docker"],
-            image: "logistics", // Using existing image placeholder for now
+            image: "/project-aviation.png",
             featured: true,
             order: 2
         },
@@ -37,7 +38,7 @@ async function updateProjects() {
             solution: "Created a mobile finance app with secure bank integrations, AI-powered spending categorization, budget suggestions, and interactive financial analytics. Included biometric login and encrypted local storage.",
             outcome: "Improved user financial visibility, increased budgeting adherence by 60%, and achieved high engagement through personalized spending alerts.",
             techStack: ["Flutter", "Firebase", "REST API", "OAuth2", "Cloud Functions"],
-            image: "fintech", // Using existing image placeholder for now
+            image: "/project-fintech.png",
             featured: true,
             order: 3
         }

@@ -16,6 +16,7 @@ import NotFound from "@/pages/not-found";
 import AppDevelopment from "@/pages/services/AppDevelopment";
 import WebDevelopment from "@/pages/services/WebDevelopment";
 import AIAutomation from "@/pages/services/AIAutomation";
+import CaseStudy from "@/pages/CaseStudy";
 import GlobalLanding from "@/pages/global/GlobalLanding";
 import { HelmetProvider } from "react-helmet-async";
 import { SchemaJSONLD } from "@/components/SchemaJSONLD";
@@ -51,7 +52,8 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/contact" component={Contact} />
-      <Route path="/blog/:slug?" component={Blog} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/blog/:slug" component={Blog} />
       <Route path="/admin" component={Admin} />
       <Route path="/admin" component={Admin} />
 
@@ -59,6 +61,10 @@ function Router() {
       <Route path="/services/app-development" component={AppDevelopment} />
       <Route path="/services/web-development" component={WebDevelopment} />
       <Route path="/services/ai-automation" component={AIAutomation} />
+
+      {/* Case Studies & Portfolio Details */}
+      <Route path="/case-studies/:id" component={CaseStudy} />
+      <Route path="/portfolio/:id" component={CaseStudy} />
 
       {/* Global Landing Pages */}
       <Route path="/global/:region" component={GlobalLanding} />

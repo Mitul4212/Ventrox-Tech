@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { app, httpServer, setup, log } from "../api/lib/app.js";
 import { serveStatic } from "./static.js";
 setup().then(async () => {
