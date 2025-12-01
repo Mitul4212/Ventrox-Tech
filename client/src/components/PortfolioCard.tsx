@@ -55,6 +55,7 @@ export function PortfolioCard({ project, variant = "default" }: PortfolioCardPro
               <img
                 src={project.image}
                 alt={project.title}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : (
@@ -118,6 +119,7 @@ export function PortfolioCard({ project, variant = "default" }: PortfolioCardPro
               <img
                 src={project.image}
                 alt={project.title}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : (

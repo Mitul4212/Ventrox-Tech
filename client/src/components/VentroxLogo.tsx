@@ -28,6 +28,7 @@ export function VentroxLogo({
         alt="VentroX Tech Logo"
         width={iconSize}
         height={iconSize}
+        loading="lazy"
         className={cn(
           "object-contain transition-all duration-300",
           animated && "animate-pulse-glow"

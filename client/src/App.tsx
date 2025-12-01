@@ -18,6 +18,8 @@ import WebDevelopment from "@/pages/services/WebDevelopment";
 import AIAutomation from "@/pages/services/AIAutomation";
 import GlobalLanding from "@/pages/global/GlobalLanding";
 import { HelmetProvider } from "react-helmet-async";
+import { SchemaJSONLD } from "@/components/SchemaJSONLD";
+import { Analytics } from "@/components/Analytics";
 import { useEffect } from "react";
 import { apiRequest } from "./lib/queryClient";
 
@@ -72,6 +74,8 @@ function App() {
 
   return (
     <HelmetProvider>
+      <SchemaJSONLD />
+      <Analytics />
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <PageViewTracker />
