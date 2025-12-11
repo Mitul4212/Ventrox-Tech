@@ -11,6 +11,7 @@ import Services from "@/pages/Services";
 import Portfolio from "@/pages/Portfolio";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
 import Admin from "@/pages/Admin";
 import NotFound from "@/pages/not-found";
 import AppDevelopment from "@/pages/services/AppDevelopment";
@@ -18,6 +19,9 @@ import WebDevelopment from "@/pages/services/WebDevelopment";
 import AIAutomation from "@/pages/services/AIAutomation";
 import CaseStudy from "@/pages/CaseStudy";
 import GlobalLanding from "@/pages/global/GlobalLanding";
+import PrivacyPolicy from "@/pages/legal/PrivacyPolicy";
+import TermsOfService from "@/pages/legal/TermsOfService";
+import CookiePolicy from "@/pages/legal/CookiePolicy";
 import { HelmetProvider } from "react-helmet-async";
 import { SchemaJSONLD } from "@/components/SchemaJSONLD";
 import { Analytics } from "@/components/Analytics";
@@ -44,6 +48,16 @@ function PageViewTracker() {
   return null;
 }
 
+function ScrollToTop() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
+}
+
 function Router() {
   return (
     <Switch>
@@ -53,7 +67,7 @@ function Router() {
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/contact" component={Contact} />
       <Route path="/blog" component={Blog} />
-      <Route path="/blog/:slug" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/admin" component={Admin} />
       <Route path="/admin" component={Admin} />
 
@@ -68,6 +82,11 @@ function Router() {
 
       {/* Global Landing Pages */}
       <Route path="/global/:region" component={GlobalLanding} />
+
+      {/* Legal Pages */}
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
+      <Route path="/cookie-policy" component={CookiePolicy} />
 
       <Route component={NotFound} />
     </Switch>
@@ -84,6 +103,7 @@ function App() {
       <Analytics />
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
+          <ScrollToTop />
           <PageViewTracker />
           <div className="flex flex-col min-h-screen">
             {!isAdmin && <Navigation />}

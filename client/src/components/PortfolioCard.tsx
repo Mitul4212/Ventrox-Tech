@@ -54,12 +54,15 @@ export function PortfolioCard({ project, variant = "default" }: PortfolioCardPro
               colors.gradient
             )}>
               {project.image && project.image.startsWith("/") ? (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                <picture className="w-full h-full">
+                  <source srcSet={project.image.replace(/\.(png|jpg|jpeg)$/, ".webp")} type="image/webp" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </picture>
               ) : (
                 <div className="w-32 h-24 rounded-lg bg-card/80 backdrop-blur border border-border flex items-center justify-center">
                   <span className="font-mono text-xs text-muted-foreground">Preview</span>
@@ -119,12 +122,15 @@ export function PortfolioCard({ project, variant = "default" }: PortfolioCardPro
             colors.gradient
           )}>
             {project.image && project.image.startsWith("/") ? (
-              <img
-                src={project.image}
-                alt={project.title}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+              <picture className="w-full h-full">
+                <source srcSet={project.image.replace(/\.(png|jpg|jpeg)$/, ".webp")} type="image/webp" />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </picture>
             ) : (
               <div className="w-48 h-32 rounded-lg bg-card/80 backdrop-blur border border-border flex items-center justify-center">
                 <div className="text-center">

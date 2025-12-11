@@ -19,7 +19,7 @@ const footerLinks = {
   resources: [
     { label: "Portfolio", href: "/portfolio" },
     { label: "Case Studies", href: "/portfolio" },
-    { label: "Blog", href: "#" },
+    { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/contact" },
   ],
 };
@@ -28,7 +28,7 @@ export function Footer() {
   return (
     <footer className="bg-card border-t border-border" data-testid="footer">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 md:gap-12">
           <div className="lg:col-span-2">
             <VentroxLogo size="lg" />
             <p className="mt-4 text-muted-foreground max-w-sm leading-relaxed">
@@ -79,6 +79,21 @@ export function Footer() {
           </div>
 
           <div>
+            <h4 className="font-semibold text-foreground mb-4" data-testid="text-footer-resources-title">Resources</h4>
+            <ul className="space-y-3">
+              {footerLinks.resources.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} data-testid={`link-footer-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <span className="text-muted-foreground hover:text-primary transition-colors cursor-pointer text-sm">
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
             <h4 className="font-semibold text-foreground mb-4" data-testid="text-footer-contact-title">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-muted-foreground text-sm">
@@ -102,9 +117,15 @@ export function Footer() {
             © {new Date().getFullYear()} Ventrox Tech. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <span className="hover:text-primary transition-colors cursor-pointer" data-testid="link-privacy-policy">Privacy Policy</span>
-            <span className="hover:text-primary transition-colors cursor-pointer" data-testid="link-terms-of-service">Terms of Service</span>
-            <span className="hover:text-primary transition-colors cursor-pointer" data-testid="link-cookie-policy">Cookie Policy</span>
+            <Link href="/privacy-policy">
+              <span className="hover:text-primary transition-colors cursor-pointer" data-testid="link-privacy-policy">Privacy Policy</span>
+            </Link>
+            <Link href="/terms-of-service">
+              <span className="hover:text-primary transition-colors cursor-pointer" data-testid="link-terms-of-service">Terms of Service</span>
+            </Link>
+            <Link href="/cookie-policy">
+              <span className="hover:text-primary transition-colors cursor-pointer" data-testid="link-cookie-policy">Cookie Policy</span>
+            </Link>
           </div>
         </div>
       </div>
