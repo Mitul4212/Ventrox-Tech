@@ -42,15 +42,20 @@ export default function Blog() {
                   <Link href={`/blog/${post.slug}`} className="block h-full">
                     <article className="group h-full bg-card border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg cursor-pointer flex flex-col relative z-0">
                       <div className="aspect-video w-full overflow-hidden bg-muted">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          loading="lazy"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000"; // Fallback image
-                          }}
-                        />
+                        <picture className="w-full h-full">
+                          {post.image?.match(/\.(png|jpg|jpeg)$/) && (
+                            <source srcSet={post.image.replace(/\.(png|jpg|jpeg)$/, ".webp")} type="image/webp" />
+                          )}
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            loading="lazy"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000"; // Fallback image
+                            }}
+                          />
+                        </picture>
                       </div>
 
                       <div className="p-6 flex flex-col flex-grow">

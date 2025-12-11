@@ -79,14 +79,19 @@ export default function BlogPost() {
                     {/* Featured Image */}
                     <AnimatedSection>
                         <div className="rounded-2xl overflow-hidden mb-12 shadow-2xl border border-border/50 aspect-video">
-                            <img
-                                src={post.image}
-                                alt={post.title}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000"; // Fallback image
-                                }}
-                            />
+                            <picture className="w-full h-full">
+                                {post.image?.match(/\.(png|jpg|jpeg)$/) && (
+                                    <source srcSet={post.image.replace(/\.(png|jpg|jpeg)$/, ".webp")} type="image/webp" />
+                                )}
+                                <img
+                                    src={post.image}
+                                    alt={post.title}
+                                    className="w-full h-full object-cover"
+                                    onError={(e) => {
+                                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000"; // Fallback image
+                                    }}
+                                />
+                            </picture>
                         </div>
                     </AnimatedSection>
 
